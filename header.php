@@ -1,7 +1,7 @@
 <?php
 /**
- * @package Le pays des licornes
- * @since Le pays des licornes 1.0
+ * @package Felinos de Burdeos
+ * @since Felinos de Burdeos 1.0
  */
 ?>
 
