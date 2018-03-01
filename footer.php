@@ -13,13 +13,11 @@
       endwhile;
   }
 ?>
-				<div class="viewer">
-					<div class="viewer-content">
-						<img src="" alt="">
-					</div>
-				</div>
-			</main>
+	<div class="viewer">
+		<div class="viewer-content">
+			<img src="" alt="">
 		</div>
+	</div>
 	</div><!-- .site-content -->
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
@@ -30,6 +28,7 @@
 	</footer><!-- .site-footer -->
 </div>
 <script src="<?php echo get_template_directory_uri() ?>/js/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
 <script src="<?php echo get_template_directory_uri() ?>/js/app.js"></script>
 <script src="<?php echo get_template_directory_uri() ?>/js/bootstrap.min.js"></script>
 </body>

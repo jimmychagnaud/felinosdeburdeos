@@ -1,106 +1,112 @@
-.site-main {
-  .customPost {
-    text-align: center;
-    .customPostImage {
-      background-color: #FFF;
-      min-height: 125px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      @media (max-width: $screen-xs-max) {
-        display: none
-      }
-      .svgHome {
-        height: 75px;
-        width: 75px;
-        fill: $primary-color;
-      }
-    }
-    .customPostText {
-      background-color: $primary-color;
-      min-height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p {
-        color: #000;
-      }
-      a:hover {
-        text-decoration: none;
-        h4 {
-          color: #000;
-        }
-      }
-      .svgHome {
-        display: none;
-        height: 75px;
-        width: 75px;
-        margin: 15px auto;
-        fill: #FFF;
-        @media (max-width: $screen-xs-max) {
-          display: block;
-        }
-      }
-    }
-  }
-  .contentPage {
-    text-align: center;
-    margin-bottom: 75px;
-    .contentCol {
-      display: inline-block;
-      float: none;
-      width: 33%;
-      margin: 25px 0px;
-      height: 225px;
-      @media (max-width: $screen-xs-max) {
-        width: 100%;
-      }
-      .occasionImage {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        height: 190px;
-      }
-      p {
-        margin-top: 10px;
-        font-size: 14px;
-      }
-    }
-  }
-  .centreVerticalement {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .col {
-    display: inline-block;
-    vertical-align: top;
-    float: none;
-    @media (min-width: $screen-xs-max) {
-      width: 24%;
-    }
-    p {
-      margin: 0;
-    }
-  }
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@mixin transition($time, $property: all, $easing: ease-in) {
+  transition: $property $time $easing;
+}
 
-  .animated {
-    animation-duration: .9s;
-    animation-fill-mode: both;
-    animation-timing-function: ease-out;
-    animation-iteration-count: infinite;
+$parallax-offset: 30vh;
+$content-offset: 40vh;
+$transition-speed: 1.2s;
+$slide-number: 4;
+html,
+body {
+  overflow: hidden;
+}
+
+.background {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  overflow: hidden;
+  will-change: transform;
+  backface-visibility: hidden;
+  height: 100vh + $parallax-offset;
+  position: fixed;
+  width: 100%;
+  transform: translateY($parallax-offset);
+  @include transition($transition-speed, all, cubic-bezier(0.22, 0.44, 0, 1));
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .3);
   }
-  @keyframes bounce {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
+  &:first-child {
+    background-image: url("img/bg1.jpg");
+    transform: translateY(-$parallax-offset / 2);
+    .content-wrapper {
+      transform: translateY($parallax-offset /2);
     }
   }
-  .bounce {
-    -webkit-animation-name: bounce;
-    animation-name: bounce;
+  &:nth-child(2) {
+    background-image: url("img/bg1.jpg");
+  }
+  &:nth-child(3) {
+    background-image: url("img/bg2.jpg");
+  }
+  &:nth-child(4) {
+    background-image: url("img/bg2.jpg");
+  }
+}
+
+@for $i from 1 to ($slide-number+1) {
+  .background:nth-child(#{$i}) {
+    z-index: ($slide-number + 1) - $i;
+  }
+}
+
+.content {
+  &-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-flow: column nowrap;
+    color: #fff;
+    font-family: Montserrat;
+    text-transform: uppercase;
+    transform: translateY($content-offset);
+    will-change: transform;
+    backface-visibility: hidden;
+    @include transition($transition-speed+.5,
+    all,
+    cubic-bezier(0.22,
+    0.44,
+    0,
+    1));
+  }
+  &-title {
+    font-size: 12vh;
+    line-height: 1.4;
+  }
+}
+
+.background.up-scroll {
+  transform: translate3d(0, -$parallax-offset / 2, 0);
+  .content-wrapper {
+    transform: translateY($parallax-offset / 2);
+  }
+  +.background {
+    transform: translate3d(0, $parallax-offset, 0);
+    .content-wrapper {
+      transform: translateY($parallax-offset);
+    }
+  }
+}
+
+.background.down-scroll {
+  transform: translate3d(0, -(100vh + $parallax-offset), 0);
+  .content-wrapper {
+    transform: translateY($content-offset);
+  }
+  +.background:not(.down-scroll) {
+    transform: translate3d(0, -$parallax-offset / 2, 0);
+    .content-wrapper {
+      transform: translateY($parallax-offset / 2);
+    }
   }
 }

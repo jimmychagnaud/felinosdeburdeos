@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url')?>">
   <?php wp_head();?>
 </head>
-<body <?php body_class();?>>
+<body class="bg">
 	<div class="headerDiv">
 		<div class="container" id="headerPage">
 	    <header>
@@ -43,5 +43,3 @@
 		</div>
 	</div>
 <div id="content" class="site-content">
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
