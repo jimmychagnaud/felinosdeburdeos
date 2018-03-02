@@ -36,20 +36,20 @@ body {
     background-color: rgba(0, 0, 0, .3);
   }
   &:first-child {
-    background-image: url("img/bg1.jpg");
+    background-image: url("img/bg4.png");
     transform: translateY(-$parallax-offset / 2);
     .content-wrapper {
       transform: translateY($parallax-offset /2);
     }
   }
   &:nth-child(2) {
-    background-image: url("img/bg1.jpg");
+    background-image: url("img/bg2.png");
   }
   &:nth-child(3) {
-    background-image: url("img/bg2.jpg");
+    background-image: url("img/bg3.png");
   }
   &:nth-child(4) {
-    background-image: url("img/bg2.jpg");
+    background-image: url("img/bg6.png");
   }
 }
 
