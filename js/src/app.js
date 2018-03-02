@@ -1,35 +1,13 @@
-var img = $('.viewer-content > img');
-
-$('.imageSingle').on('click', function(e) {
-  var src = $(this).css('background-image');
-  url = src.replace('url("', '').replace('")', '');
-  img.attr('src', url);
-  $('.viewer').css('display', 'block');
-  $('.viewer').animate({ 'opacity': '1' }, 300);
-});
-
-$('.viewer').on('click', function(e) {
-  hideViewer();
-});
-
-function hideViewer() {
-  $('.viewer').animate({ 'opacity': '0' }, 300);
-  setTimeout(function() {
-    $('.viewer').css('display', 'none');
-  }, 300);
-}
-
-// ------------- VARIABLES ------------- //
 var ticking = false;
 var isFirefox = (/Firefox/i.test(navigator.userAgent));
 var isIe = (/MSIE/i.test(navigator.userAgent)) || (/Trident.*rv\:11\./i.test(navigator.userAgent));
-var scrollSensitivitySetting = 30; //Increase/decrease this number to change sensitivity to trackpad gestures (up = less sensitive; down = more sensitive) 
+var scrollSensitivitySetting = 30; //Increase/decrease this number to change sensitivity to trackpad gestures (up = less sensitive; down = more sensitive)
 var slideDurationSetting = 600; //Amount of time for which slide is "locked"
 var currentSlideNumber = 0;
 var totalSlideNumber = $(".background").length;
 
 // ------------- DETERMINE DELTA/SCROLL DIRECTION ------------- //
-function parallaxScroll(evt) {
+function wheelScroll(evt) {
   if (isFirefox) {
     //Set delta for Firefox
     delta = evt.detail * (-120);
@@ -40,7 +18,31 @@ function parallaxScroll(evt) {
     //Set delta for all other browsers
     delta = evt.wheelDelta;
   }
+  if (ticking != true) {
+    if (delta <= -scrollSensitivitySetting) {
+      //Down scroll
+      ticking = true;
+      if (currentSlideNumber !== totalSlideNumber - 1) {
+        currentSlideNumber++;
+        nextItem();
+      }
+      slideDurationTimeout(slideDurationSetting);
+    }
+    if (delta >= scrollSensitivitySetting) {
+      //Up scroll
+      ticking = true;
+      if (currentSlideNumber !== 0) {
+        currentSlideNumber--;
+      }
+      previousItem();
+      slideDurationTimeout(slideDurationSetting);
+    }
+  }
+}
 
+function touchScroll(ts, te) {
+  delta = te - ts;
+  console.log('para');
   if (ticking != true) {
     if (delta <= -scrollSensitivitySetting) {
       //Down scroll
@@ -72,7 +74,17 @@ function slideDurationTimeout(slideDuration) {
 
 // ------------- ADD EVENT LISTENER ------------- //
 var mousewheelEvent = isFirefox ? "DOMMouseScroll" : "wheel";
-window.addEventListener(mousewheelEvent, _.throttle(parallaxScroll, 60), false);
+var ts;
+
+//window.addEventListener(mousewheelEvent, _.throttle(wheelScroll, 60), false);
+window.addEventListener(mousewheelEvent, $.throttle(60, wheelScroll), false);
+window.addEventListener("touchstart", function(e) {
+  ts = e.touches[0].clientY;
+}, false);
+window.addEventListener("touchend", function(e) {
+  var te = e.changedTouches[0].clientY;
+  touchScroll(ts, te);
+}, false);
 
 // ------------- SLIDE MOTION ------------- //
 function nextItem() {
@@ -83,4 +95,30 @@ function nextItem() {
 function previousItem() {
   var $currentSlide = $(".background").eq(currentSlideNumber);
   $currentSlide.removeClass("down-scroll").addClass("up-scroll");
+}
+
+window.addEventListener("load", function() {
+  // Animate loader off screen
+  $(".se-pre-con").fadeOut("slow");;
+});
+
+var img = $('.viewer-content > img');
+
+$('.imageSingle').on('click', function(e) {
+  var src = $(this).css('background-image');
+  url = src.replace('url("', '').replace('")', '');
+  img.attr('src', url);
+  $('.viewer').css('display', 'block');
+  $('.viewer').animate({ 'opacity': '1' }, 300);
+});
+
+$('.viewer').on('click', function(e) {
+  hideViewer();
+});
+
+function hideViewer() {
+  $('.viewer').animate({ 'opacity': '0' }, 300);
+  setTimeout(function() {
+    $('.viewer').css('display', 'none');
+  }, 300);
 }

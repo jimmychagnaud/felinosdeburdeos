@@ -36,20 +36,32 @@ body {
     background-color: rgba(0, 0, 0, .3);
   }
   &:first-child {
-    background-image: url("img/bg4.png");
+    background-image: url("img/bg1 Vd.jpg");
     transform: translateY(-$parallax-offset / 2);
     .content-wrapper {
       transform: translateY($parallax-offset /2);
     }
+    @media (max-width: $screen-md-min) {
+      background-image: url("img/bg1 Vm.jpg");
+    }
   }
   &:nth-child(2) {
-    background-image: url("img/bg2.png");
+    background-image: url("img/bg2 Vd.jpg");
+    @media (max-width: $screen-md-min) {
+      background-image: url("img/bg2 Vm.jpg");
+    }
   }
   &:nth-child(3) {
-    background-image: url("img/bg3.png");
+    background-image: url("img/bg3 Vd.jpg");
+    @media (max-width: $screen-md-min) {
+      background-image: url("img/bg3 Vm.jpg");
+    }
   }
   &:nth-child(4) {
-    background-image: url("img/bg6.png");
+    background-image: url("img/bg4 Vd.jpg");
+    @media (max-width: $screen-md-min) {
+      background-image: url("img/bg4 Vm.jpg");
+    }
   }
 }
 

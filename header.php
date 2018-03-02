@@ -16,6 +16,7 @@
   <?php wp_head();?>
 </head>
 <body class="bg">
+<div class="se-pre-con"></div>
 	<div class="headerDiv">
 		<div class="container" id="headerPage">
 	    <header>
@@ -28,7 +29,7 @@
 			        <span class="icon-bar"></span>
 			      </button>
 			      <a class="navbar-brand" href="/">
-			        <img alt="Brand" src="<?php echo get_template_directory_uri() ?>/img/logocircle2.png">
+			        <img alt="Brand" src="<?php echo get_template_directory_uri() ?>/img/logoTemp.png">
 			      </a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="navbar-collapse-top">
@@ -42,4 +43,4 @@
 			</header>
 		</div>
 	</div>
-<div id="content" class="site-content">
+<div class="site-content">
