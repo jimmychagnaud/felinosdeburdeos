@@ -101,7 +101,6 @@ window.addEventListener("load", function() {
   // Animate loader off screen
   $(".se-pre-con").fadeOut("slow");;
 });
-
 var img = $('.viewer-content > img');
 
 $('.imageSingle').on('click', function(e) {
@@ -122,3 +121,8 @@ function hideViewer() {
     $('.viewer').css('display', 'none');
   }, 300);
 }
+
+window.addEventListener("load", function() {
+  // Animate loader off screen
+  $(".se-pre-con").fadeOut("slow");;
+});

@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url')?>">
   <?php wp_head();?>
 </head>
-<body class="bg">
+<body class="bg" style="<?php is_page('accueil') ? 'overflow: hidden;' : 'overflow: auto'; ?>">
 <div class="se-pre-con"></div>
 	<div class="headerDiv">
 		<div class="container" id="headerPage">
