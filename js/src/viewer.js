@@ -20,6 +20,18 @@ function hideViewer() {
 }
 
 window.addEventListener("load", function() {
-  // Animate loader off screen
-  $(".se-pre-con").fadeOut("slow");;
+  $(".se-pre-con").fadeOut("slow");
+});
+
+$(document).ready(function() {
+  $('#barre').animate({
+    marginTop: "0",
+  }, 500);
+  $("#fermer").mousedown(function() {
+
+    $('#barre').animate({
+      marginTop: "30px",
+    }, 500);
+
+  });
 });

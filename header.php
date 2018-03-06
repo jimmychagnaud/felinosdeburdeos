@@ -15,9 +15,13 @@
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url')?>">
   <?php wp_head();?>
 </head>
-<body class="bg" style="<?php is_page('accueil') ? 'overflow: hidden;' : 'overflow: auto'; ?>">
+<body class="bg" <?php echo is_page('accueil') ? 'style="overflow: hidden;"' : 'style="overflow: auto"'; ?>>
+<div id="barre">
+    Actualité: 
+    <div id="fermer"></div>
+</div>
 <div class="se-pre-con"></div>
-	<div class="headerDiv">
+	<div class="headerDiv" <?php echo is_page('accueil') ? 'style="background-color: rgba(0, 0, 0, .3);"' : 'style="background-color: #2c3030;"'; ?>>
 		<div class="container" id="headerPage">
 	    <header>
 				<nav class="navbar navbar-default">

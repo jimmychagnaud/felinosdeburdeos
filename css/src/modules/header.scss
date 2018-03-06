@@ -1,10 +1,40 @@
+#barre {
+  width: 100%;
+  position: fixed;
+  top: calc(100% - 29px);
+  left: 0;
+  right: 0;
+  z-index: 999999999;
+  background: #0bcfdd;
+  padding: 4px 0;
+  text-align: center;
+  font-size: 15px;
+  margin-top: 30px;
+  #fermer {
+    background: url(img/cancel.png);
+    width: 18px;
+    height: 18px;
+    display: block;
+    cursor: pointer;
+    float: right;
+    margin-right: 30px;
+    background-position: center;
+    background-size: contain;
+  }
+  a {
+    color: $primary-color;
+    &:hover {
+      color: darken($secondary-color, 10);
+    }
+  }
+}
+
 .headerDiv {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 10000000;
-  background-color: rgba(0, 0, 0, .3);
   #headerPage {
     padding: 0;
     .navbar.navbar-default {
