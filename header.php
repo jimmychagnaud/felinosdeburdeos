@@ -47,4 +47,4 @@
 			</header>
 		</div>
 	</div>
-<div class="site-content">
+<div class="site-content" <?php echo is_page('accueil') ? 'id="homepage"' : ''; ?>>
