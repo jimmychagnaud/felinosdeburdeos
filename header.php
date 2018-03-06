@@ -6,11 +6,12 @@
 $args = ['post_type' => 'actu'];
   $loop = new WP_Query($args);
 
-  if ($loop->have_posts()) {
-      while($loop->have_posts()) : $loop->the_post();
-      $text = get_the_title();
-      endwhile;
-  }
+  if ($loop->have_posts()) :
+		while($loop->have_posts()) : $loop->the_post();
+		$text = get_the_title();
+		endwhile;
+	endif;
+	wp_reset_query();
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ $args = ['post_type' => 'actu'];
   <link rel="profile" href="http://gmpg.org/xfn/11">
   <link rel="pingback" href="<?php bloginfo('pingback_url');?>">
   <link rel="stylesheet" type="text/css" href="<?php bloginfo('stylesheet_url')?>">
-  <?php wp_head();?>
+	<?php wp_head();?>
 </head>
 <body class="bg" <?php echo is_page('accueil') ? 'style="overflow: hidden;"' : 'style="overflow: auto"'; ?>>
 <div id="barre">
