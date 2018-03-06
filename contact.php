@@ -6,7 +6,6 @@
  */
 
 get_header();?>
-<div class="header" style="background-image: url('<?php echo get_template_directory_uri() ?>/img/bg3 Vd.jpg');"></div>
 <div class="container" id="content">
 	<div class="row text-center textContact">
 		<div class="col-md-8 col-md-offset-2">
