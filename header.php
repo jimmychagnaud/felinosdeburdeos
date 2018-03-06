@@ -3,6 +3,14 @@
  * @package Felinos de Burdeos
  * @since Felinos de Burdeos 1.0
  */
+$args = ['post_type' => 'actu'];
+  $loop = new WP_Query($args);
+
+  if ($loop->have_posts()) {
+      while($loop->have_posts()) : $loop->the_post();
+      $text = get_the_title();
+      endwhile;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +25,7 @@
 </head>
 <body class="bg" <?php echo is_page('accueil') ? 'style="overflow: hidden;"' : 'style="overflow: auto"'; ?>>
 <div id="barre">
-    Actualité: 
+    Actualité: <?php echo $text; ?>
     <div id="fermer"></div>
 </div>
 <div class="se-pre-con"></div>

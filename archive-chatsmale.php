@@ -16,7 +16,7 @@ $Chats= new WP_Query(array(
 <div class="header" style="background-image: url('<?php echo get_template_directory_uri() ?>/img/bg1.jpg');"></div>
 <div class="container chatArchive">
 	<div class="row">
-		<h1>Tous mes chats mâle</h1>
+		<h1>Tous mes Maine coon mâle</h1>
 		<?php while ($Chats->have_posts()) {
 					 	$Chats->the_post();
 						$chatImage = get_field('imageChat');

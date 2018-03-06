@@ -106,26 +106,24 @@ function create_post_bebe_chats()
 }
 add_action('init', 'create_post_bebe_chats');
 
-function create_post_block()
+function create_post_actu()
 {
-  register_post_type('block', [
+  register_post_type('actu', [
     'labels'            => [
-      'name'          => __('Block'),
-      'singular_name' => __('Block'),
-      'add_new_item'  => ('Ajouter un nouveau block'),
-      'edit_item'     => __('Modifier un block'),
-      'search_item'   => __('Rechercher un block'),
-      'all_items'     => __('Tous les blocks'),
-      'view_items'    => __('Voir les blocks'),
-      'view_item'     => __('Voir le block'),
+      'name'          => __('Actualité'),
+      'singular_name' => __('Actualité'),
+      'add_new_item'  => ('Ajouter une nouvelle actualité'),
+      'edit_item'     => __('Modifier une actualité'),
+      'search_item'   => __('Rechercher une actualité'),
+      'view_item'     => __('Voir l\'actualité'),
     ],
     'capabilities' => array(
       'create_posts' => 'do_not_allow',
     ),
     'map_meta_cap' => true,
     'public'            => true,
-    'has_archive'       => true,
-    'rewrite'           => ['slug' => 'block'],
+    'has_archive'       => false,
+    'rewrite'           => ['slug' => 'actus'],
     'capability_type'   => 'page',
     'menu_icon'         => 'dashicons-align-right',
     'supports'          => ['title', 'thumbnail'],
@@ -133,7 +131,7 @@ function create_post_block()
     'show_in_nav_menus' => false,
   ]);
 }
-add_action('init', 'create_post_block');
+add_action('init', 'create_post_actu');
 
 register_nav_menus(array(
   'Top'    => 'Navigation principale',
